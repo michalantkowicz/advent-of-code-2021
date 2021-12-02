@@ -3,8 +3,8 @@ package com.advent.of.code.day1;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReportProcessor {
-    public int countIncreases(List<Integer> measurements) {
+class ReportProcessor {
+    int countIncreases(List<Integer> measurements) {
         int result = 0;
         for (int i = 1; i < measurements.size(); i++) {
             if (measurements.get(i) > measurements.get(i - 1)) {
@@ -14,7 +14,7 @@ public class ReportProcessor {
         return result;
     }
 
-    public int countIncreasesWithSlidingWindow(List<Integer> measurements, int windowWidth) {
+    int countIncreasesWithSlidingWindow(List<Integer> measurements, int windowWidth) {
         final List<Integer> windowsMeasurements = new ArrayList<>();
         for (int i = 0; i < measurements.size() - windowWidth + 1; i++) {
             int windowValue = 0;
