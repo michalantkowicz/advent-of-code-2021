@@ -55,7 +55,7 @@ class DiagnosticUnitTest {
     private static Stream<Arguments> provideArgumentsForSecondTask() {
         return Stream.of(
                 Arguments.of("src/test/resources/day3/test.in", 230),
-                Arguments.of("src/test/resources/day3/input1.in", 3368358)
+                Arguments.of("src/test/resources/day3/input2.in", 3368358)
         );
     }
 }
