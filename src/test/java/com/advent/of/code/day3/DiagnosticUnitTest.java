@@ -19,9 +19,7 @@ class DiagnosticUnitTest {
         // given
         final DiagnosticUnit diagnosticUnit = new DiagnosticUnit();
         final List<List<Integer>> input = readFileLines(inputFilePath).stream()
-                .map(row -> {
-                    return stream(row.split("")).map(Integer::valueOf).collect(Collectors.toList());
-                })
+                .map(row -> stream(row.split("")).map(Integer::valueOf).collect(Collectors.toList()))
                 .collect(Collectors.toList());
 
         // when
@@ -31,10 +29,33 @@ class DiagnosticUnitTest {
         Assertions.assertThat(powerConsumption).isEqualTo(expectedValue);
     }
 
+    @ParameterizedTest
+    @MethodSource("provideArgumentsForSecondTask")
+    void test_shouldCalculateProperLifeSupportRating(String inputFilePath, int expectedValue) {
+        // given
+        final DiagnosticUnit diagnosticUnit = new DiagnosticUnit();
+        final List<List<Integer>> input = readFileLines(inputFilePath).stream()
+                .map(row -> stream(row.split("")).map(Integer::valueOf).collect(Collectors.toList()))
+                .collect(Collectors.toList());
+
+        // when
+        final int powerConsumption = diagnosticUnit.calculateLifeSupportingRating(input);
+
+        // then
+        Assertions.assertThat(powerConsumption).isEqualTo(expectedValue);
+    }
+
     private static Stream<Arguments> provideArgumentsForFirstTask() {
         return Stream.of(
                 Arguments.of("src/test/resources/day3/test.in", 198),
                 Arguments.of("src/test/resources/day3/input1.in", 2972336)
+        );
+    }
+
+    private static Stream<Arguments> provideArgumentsForSecondTask() {
+        return Stream.of(
+                Arguments.of("src/test/resources/day3/test.in", 230),
+                Arguments.of("src/test/resources/day3/input1.in", 3368358)
         );
     }
 }
