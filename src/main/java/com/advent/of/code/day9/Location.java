@@ -1,23 +1,17 @@
 package com.advent.of.code.day9;
 
 class Location {
-    private final int x;
-    private final int y;
+    private final Position position;
     private final int height;
     private int basinSize = 0;
 
-    public Location(int x, int y, int height) {
-        this.x = x;
-        this.y = y;
+    public Location(Position position, int height) {
+        this.position = position;
         this.height = height;
     }
 
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
+    public Position getPosition() {
+        return position;
     }
 
     public int getHeight() {
