@@ -1,6 +1,6 @@
 package com.advent.of.code.day9;
 
-public class LowPointProcessor {
+class LowPointProcessor {
     int getSumOfRiskLevels(int[][] heightmap) {
         int result = 0;
         for (int i = 0; i < heightmap.length; i++) {
