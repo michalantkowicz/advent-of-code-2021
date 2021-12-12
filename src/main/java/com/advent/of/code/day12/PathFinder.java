@@ -5,17 +5,10 @@ import java.util.List;
 import java.util.function.BiFunction;
 
 class PathFinder {
-    List<String> findAllPaths(Cave start) {
+    List<String> findAllPathsDueToRule(Cave start, BiFunction<Cave, String, Boolean> rule) {
         final List<String> result = new ArrayList<>();
         final String firstPath = start.getName();
-        findPaths(start, result, firstPath, Cave::canBeVisited);
-        return result;
-    }
-
-    List<String> findAllPathsDueToNewRule(Cave start) {
-        final List<String> result = new ArrayList<>();
-        final String firstPath = start.getName();
-        findPaths(start, result, firstPath, Cave::canBeVisitedDueToNewRule);
+        findPaths(start, result, firstPath, rule);
         return result;
     }
 

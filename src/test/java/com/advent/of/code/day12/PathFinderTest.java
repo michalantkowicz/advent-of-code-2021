@@ -14,14 +14,14 @@ import static com.advent.of.code.Utils.readFileLines;
 class PathFinderTest {
     @ParameterizedTest
     @MethodSource("provideArgumentsForFirstTask")
-    void test_shouldFindProperCountOfAllPathsValidByRules(String inputFilePath, int expectedValue) {
+    void test_shouldFindProperCountOfAllPathsValidDueToRule(String inputFilePath, int expectedValue) {
         // given
         final PathFinder finder = new PathFinder();
         final List<String> inputLines = readFileLines(inputFilePath);
         final Cave start = buildCaveSystem(inputLines);
 
         // when
-        final int count = finder.findAllPaths(start).size();
+        final int count = finder.findAllPathsDueToRule(start, Rules::smallCaveVisitedOnce).size();
 
         // then
         Assertions.assertThat(count).isEqualTo(expectedValue);
@@ -29,14 +29,14 @@ class PathFinderTest {
 
     @ParameterizedTest
     @MethodSource("provideArgumentsForSecondTask")
-    void test_shouldFindProperCountOfAllPathsValidByNewRules(String inputFilePath, int expectedValue) {
+    void test_shouldFindProperCountOfAllPathsValidDueToNewRule(String inputFilePath, int expectedValue) {
         // given
         final PathFinder finder = new PathFinder();
         final List<String> inputLines = readFileLines(inputFilePath);
         final Cave start = buildCaveSystem(inputLines);
 
         // when
-        final int count = finder.findAllPathsDueToNewRule(start).size();
+        final int count = finder.findAllPathsDueToRule(start, Rules::oneOfSmallCavesMayBeVisitedTwice).size();
 
         // then
         Assertions.assertThat(count).isEqualTo(expectedValue);
@@ -53,7 +53,6 @@ class PathFinderTest {
         if (!caves.containsKey("start") || !caves.containsKey("end")) {
             throw new IllegalArgumentException("Provided cave system description must contain caves named 'start' and 'end'!");
         } else {
-            caves.get("end").setIsEnd(true);
             return caves.get("start");
         }
     }
