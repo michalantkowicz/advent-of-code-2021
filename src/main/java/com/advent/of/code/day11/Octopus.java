@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Octopus {
+class Octopus {
     private Position position;
     private List<Position> adjacents;
     private int lastUpdateStep = 0;
