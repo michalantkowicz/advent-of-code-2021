@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 import static java.util.Arrays.stream;
 
-public class Rules {
+class Rules {
     static boolean smallCaveVisitedOnce(Cave cave, String path) {
         return nameIsUppercase(cave) || pathDoesNotContainsCave(cave, path);
     }

@@ -23,7 +23,7 @@ class Cave {
         this.adjacents.add(adjacent);
     }
 
-    public boolean isEnd() {
+    boolean isEnd() {
         return "end".equals(name);
     }
 }
