@@ -34,8 +34,6 @@ class PolymerFactoryTest {
         final long leastCommonCount = charactersByCount.values().stream().min(comparingLong(Long::longValue)).get();
         final long result = mostCommonCount - leastCommonCount;
 
-        System.out.println(mostCommonCount);
-        System.out.println(leastCommonCount);
         // then
         Assertions.assertThat(result).isEqualTo(expectedValue);
     }
