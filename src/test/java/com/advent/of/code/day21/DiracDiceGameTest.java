@@ -53,7 +53,7 @@ class DiracDiceGameTest {
     private static Stream<Arguments> provideArgumentsForSecondTask() {
         return Stream.of(
                 Arguments.of("src/test/resources/day21/test.in", 444356092776315L),
-                Arguments.of("src/test/resources/day21/input1.in", 1004670L)
+                Arguments.of("src/test/resources/day21/input1.in", 492043106122795L)
         );
     }
 }

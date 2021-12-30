@@ -12,7 +12,7 @@ class GameResult {
         this.playerOnePosition = playerOnePosition;
         this.playerTwoPosition = playerTwoPosition;
     }
-    
+
     GameResult merge(GameResult gameResult) {
         final GameResult result = new GameResult(gameResult.playerOnePosition, gameResult.playerTwoPosition);
         result.playerOneScore = this.playerOneScore + gameResult.playerOneScore;
@@ -20,7 +20,7 @@ class GameResult {
         result.playerTwoScore = this.playerTwoScore + gameResult.playerTwoScore;
         result.playerTwoWins = this.playerTwoWins + gameResult.playerTwoWins;
         return result;
-        
+
     }
 
     long getPlayerOneWins() {
