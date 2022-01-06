@@ -1,37 +1,38 @@
 package com.advent.of.code.day22;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 class Reactor {
-    int reboot(List<Rule> rules) {
-        Set<Range> on = new HashSet<>();
+    long reboot(List<Rule> rules) {
+        final List<Wrapper> wrappers = new ArrayList<>();
 
         for (Rule rule : rules) {
+            final List<Wrapper> toAdd = new ArrayList<>();
+            for (Wrapper wrapper : wrappers) {
+                if (wrapper.cuboid().intersectsWith(rule.cuboid())) {
+                    toAdd.add(new Wrapper(wrapper.cuboid().intersectionWith(rule.cuboid()), !wrapper.add()));
+                }
+            }
+            
+            wrappers.addAll(toAdd);
+
             if (rule.on()) {
-                on.add(rule.range());
+                wrappers.add(new Wrapper(rule.cuboid(), true));
+            }
+        }
+
+        long result = 0L;
+
+        for (Wrapper wrapper : wrappers) {
+            long volume = wrapper.cuboid().volume();
+            if (wrapper.add()) {
+                result += volume;
             } else {
-                final Set<Range> newOn = new HashSet<>();
-                for (Range range : on) {
-                    newOn.addAll(range.sub(rule.range()));
-                }
-                on = newOn;
+                result -= volume;
             }
         }
 
-        Set<Point> points = new HashSet<>();
-
-        for (Range range : on) {
-            for (long x = range.minx(); x <= range.maxx(); x++) {
-                for (long y = range.miny(); y <= range.maxy(); y++) {
-                    for (long z = range.minz(); z <= range.maxz(); z++) {
-                        points.add(new Point(x, y, z));
-                    }
-                }
-            }
-        }
-
-        return points.size();
+        return result;
     }
 }
